@@ -1,5 +1,5 @@
 {
-    "name": "amirmehrabi/net_routeros",
+    "name": "pear2/net_routeros",
     "description": "This package allows you to read and write information from a RouterOS host using MikroTik's RouterOS API.",
     "keywords": ["routeros", "package", "api", "mikrotik", "pear2", "router"],
     "homepage": "http://pear2.github.com/Net_RouterOS/",
@@ -19,11 +19,6 @@
         "php": ">=5.3.0",
         "pear2/net_transmitter": ">=1.0.0b1"
     },
-    "repositories": [
-        {
-          "packagist.org": false
-        }
-      ],
     "require-dev": {
         "phpunit/phpunit": "@stable",
         "squizlabs/php_codesniffer": "@stable",
@@ -48,5 +43,6 @@
             "PEAR2\\Console\\Color": "vendor/pear2/console_color/src/"
         }
     },
-    "bin": ["scripts/roscon.php"]
+    "bin": ["scripts/roscon.php"],
+    "minimum-stability": "dev"
 }
