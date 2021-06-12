@@ -43,6 +43,5 @@
             "PEAR2\\Console\\Color": "vendor/pear2/console_color/src/"
         }
     },
-    "bin": ["scripts/roscon.php"],
-    "minimum-stability": "dev"
+    "bin": ["scripts/roscon.php"]
 }
