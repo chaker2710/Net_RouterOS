@@ -246,7 +246,7 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      *
      * @return int The number of responses in the collection.
      */
-    public function count()
+    public function count() : int
     {
         return count($this->responses);
     }
@@ -260,7 +260,7 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      *
      * @return bool TRUE if the offset exists, FALSE otherwise.
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset) : bool
     {
         return is_int($offset)
             ? array_key_exists($offset, $this->responses)
@@ -275,7 +275,7 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      *
      * @return Response The response at the specified offset.
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset) : Response
     {
         return is_int($offset)
             ? $this->responses[$offset >= 0
@@ -297,7 +297,7 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value) : void
     {
 
     }
@@ -314,7 +314,7 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset) : void
     {
 
     }
@@ -325,9 +325,9 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      * @return Response|false The first response in the collection,
      *     or FALSE if the collection is empty.
      */
-    public function rewind()
+    public function rewind() : void
     {
-        return $this->seek(0);
+        $this->seek(0);
     }
 
     /**
@@ -340,7 +340,7 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      * @return Response|false The {@link Response} at the specified position,
      *     or FALSE if the specified position is not valid.
      */
-    public function seek($position)
+    public function seek($position) : void
     {
         $this->position = is_int($position)
             ? ($position >= 0
@@ -349,7 +349,7 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
             : ($this->offsetExists($position)
             ? $this->responsesIndex[$this->index][$position]
             : -1);
-        return $this->current();
+//        return $this->current();
     }
 
     /**
@@ -358,10 +358,10 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      * @return Response|false The next {@link Response} object,
      *     or FALSE if the position is not valid.
      */
-    public function next()
+    public function next() : void
     {
         ++$this->position;
-        return $this->current();
+//        return $this->current();
     }
 
     /**
@@ -370,7 +370,7 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      * @return Response|false The response at the current pointer position,
      *     or FALSE if the position is not valid.
      */
-    public function current()
+    public function current() : mixed
     {
         return $this->valid() ? $this->responses[$this->position] : false;
     }
@@ -407,7 +407,7 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      *     i.e. the pointer position itself, or FALSE if the position
      *     is not valid.
      */
-    public function key()
+    public function key() : int|false
     {
         return $this->valid() ? $this->position : false;
     }
@@ -417,7 +417,7 @@ class ResponseCollection implements ArrayAccess, SeekableIterator, Countable
      *
      * @return bool TRUE if the pointer is valid, FALSE otherwise.
      */
-    public function valid()
+    public function valid() : bool
     {
         return $this->offsetExists($this->position);
     }
